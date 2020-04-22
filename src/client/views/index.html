@@ -28,11 +28,16 @@
                 <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
                 <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
             </form>
+            <div class='extra'><button type="submit" onclick="return Client.getweather(event)">Get Weather</button></div>
             <section>
 
                 <section>
                     <strong>Form Results:</strong>
                     <div id="results"></div>
+                </section>
+                <section>
+                    <strong>Temprature Today</strong>
+                    <div id="weather_results"></div>
                 </section>
     </main>
 
