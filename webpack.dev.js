@@ -1,10 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-module.exports = {
-    entry: './src/client/index.js',
+module.exports = merge(common, {
     output: {
         libraryTarget: 'var',
         library: 'Client'
@@ -12,23 +11,12 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     module: {
-        rules: [
-            {
-                test: '/\.js$/',
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            },
-            {
-                test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-            }
-        ]
+        rules: [{
+            test: /\.scss$/,
+            use: ['style-loader', 'css-loader', 'sass-loader']
+        }]
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
-            filename: "./index.html",
-        }),
         new CleanWebpackPlugin({
             // Simulate the removal of files
             dry: true,
@@ -39,4 +27,4 @@ module.exports = {
             protectWebpackAssets: false
         })
     ]
-}
+})
